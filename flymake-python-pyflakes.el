@@ -1,11 +1,17 @@
-;;; A flymake handler for python-mode files using pyflakes as the backend checker
-;;;
-;;; Author: Steve Purcell
-;;; Homepage: https://github.com/purcell/flymake-python-pyflakes
-;;;
-;;; Usage:
-;;;   (require 'flymake-python-pyflakes)
-;;;   (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
+;;; flymake-python-pyflakes.el --- A flymake handler for python-mode files using pyflakes as the backend checker
+
+;; Copyright (C) 2012 Steve Purcell
+
+;; Author: Steve Purcell <steve@sanityinc.com>
+;; URL: https://github.com/purcell/flymake-python-pyflakes
+
+;;; Commentary:
+
+;; Usage:
+;;   (require 'flymake-python-pyflakes)
+;;   (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
+
+;;; Code:
 
 (defvar flymake-python-pyflakes-allowed-file-name-masks '(("\\.py\\'" flymake-python-pyflakes-init)))
 (defvar flymake-python-pyflakes-executable "pyflakes")
@@ -16,6 +22,7 @@
                (flymake-init-create-temp-buffer-copy 'flymake-create-temp-inplace)
                (file-name-directory buffer-file-name)))))
 
+;;;###autoload
 (defun flymake-python-pyflakes-load ()
   (interactive)
   (set (make-local-variable 'flymake-allowed-file-name-masks)
@@ -27,3 +34,4 @@
 
 
 (provide 'flymake-python-pyflakes)
+;;; flymake-python-pyflakes.el ends here
