@@ -1,4 +1,4 @@
-;;; flymake-python-pyflakes.el --- A flymake handler for python-mode files using pyflakes as the backend checker
+;;; flymake-python-pyflakes.el --- A flymake handler for python-mode files using pyflakes (or flake8)
 
 ;; Copyright (C) 2012 Steve Purcell
 
@@ -10,6 +10,9 @@
 ;; Usage:
 ;;   (require 'flymake-python-pyflakes)
 ;;   (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
+;;
+;; To use "flake8" instead of "pyflakes", add this line:
+;;   (setq flymake-python-pyflakes-executable "flake8")
 
 ;;; Code:
 
