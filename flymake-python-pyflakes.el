@@ -5,6 +5,7 @@
 ;; Author: Steve Purcell <steve@sanityinc.com>
 ;; URL: https://github.com/purcell/flymake-python-pyflakes
 ;; Version: DEV
+;; Package-Requires: ((flymake-easy "0.4"))
 
 ;;; Commentary:
 
@@ -14,26 +15,34 @@
 ;;
 ;; To use "flake8" instead of "pyflakes", add this line:
 ;;   (setq flymake-python-pyflakes-executable "flake8")
+;;
+;; Uses flymake-easy, from https://github.com/purcell/flymake-easy
 
 ;;; Code:
 
-(defvar flymake-python-pyflakes-allowed-file-name-masks '(("\\.py\\'" flymake-python-pyflakes-init)))
-(defvar flymake-python-pyflakes-executable "pyflakes")
+(require 'flymake-easy)
 
-(defun flymake-python-pyflakes-init ()
-  (list flymake-python-pyflakes-executable
-        (list
-         (flymake-init-create-temp-buffer-copy 'flymake-create-temp-inplace))))
+(defconst flymake-python-pyflakes-err-line-patterns
+  '(("^\\(.*?\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3)
+    ;; flake8
+    ("^\\(.*?\\):\\([0-9]+\\):\\([0-9]+\\): \\(.*\\)$" 1 2 3 4)))
+
+(defvar flymake-python-pyflakes-executable "pyflakes"
+  "Pyflakes executable to use for syntax checking.")
+
+(defun flymake-python-pyflakes-command (filename)
+  "Construct a command that flymake can use to syntax-check FILENAME."
+  (list flymake-python-pyflakes-executable filename))
 
 ;;;###autoload
 (defun flymake-python-pyflakes-load ()
+  "Configure flymake mode to check the current buffer's python syntax using pyflakes."
   (interactive)
-  (set (make-local-variable 'flymake-allowed-file-name-masks)
-       flymake-python-pyflakes-allowed-file-name-masks)
-  (if (executable-find flymake-python-pyflakes-executable)
-    (flymake-mode t)
-    (message "not enabling flymake: pyflakes executable '%s' not found"
-             flymake-python-pyflakes-executable)))
+  (flymake-easy-load 'flymake-python-pyflakes-command
+                     flymake-python-pyflakes-err-line-patterns
+                     'inplace
+                     "py"
+                     "^W"))
 
 
 (provide 'flymake-python-pyflakes)
