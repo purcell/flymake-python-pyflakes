@@ -23,9 +23,9 @@
 (require 'flymake-easy)
 
 (defconst flymake-python-pyflakes-err-line-patterns
-  '(("^\\(.*?\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3)
+  '(("^\\(.*?\\.py\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3)
     ;; flake8
-    ("^\\(.*?\\):\\([0-9]+\\):\\([0-9]+\\): \\(.*\\)$" 1 2 3 4)))
+    ("^\\(.*?\\.py\\):\\([0-9]+\\):\\([0-9]+\\): \\(.*\\)$" 1 2 3 4)))
 
 (defvar flymake-python-pyflakes-executable "pyflakes"
   "Pyflakes executable to use for syntax checking.")
