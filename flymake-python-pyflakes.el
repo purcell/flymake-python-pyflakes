@@ -42,7 +42,7 @@
                      flymake-python-pyflakes-err-line-patterns
                      'inplace
                      "py"
-                     "^W"))
+                     "^\\([WFCN]\\|E[0-7]\\)"))
 
 
 (provide 'flymake-python-pyflakes)
