@@ -50,5 +50,3 @@
 
 (provide 'flymake-python-pyflakes)
 ;;; flymake-python-pyflakes.el ends here
-
-(flymake-python-pyflakes-command "")
