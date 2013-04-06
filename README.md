@@ -25,6 +25,10 @@ To use `flake8` instead of `pyflakes`, add this line:
 
     (setq flymake-python-pyflakes-executable "flake8")
 
+To add ignores to flake8, for example E501 and F403
+
+    (setq flymake-python-pyflakes-flake8-ignores "E501,F403")
+
 [marmalade]: http://marmalade-repo.org
 [melpa]: http://melpa.milkbox.net
 
@@ -35,4 +39,3 @@ To use `flake8` instead of `pyflakes`, add this line:
 [![](http://www.linkedin.com/img/webpromo/btn_liprofile_blue_80x15.png)](http://uk.linkedin.com/in/stevepurcell)
 
 [Steve Purcell's blog](http://www.sanityinc.com/) // [@sanityinc on Twitter](https://twitter.com/sanityinc)
-

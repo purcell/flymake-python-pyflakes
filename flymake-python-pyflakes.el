@@ -32,7 +32,10 @@
 
 (defun flymake-python-pyflakes-command (filename)
   "Construct a command that flymake can use to syntax-check FILENAME."
-  (list flymake-python-pyflakes-executable filename))
+  (list
+   flymake-python-pyflakes-executable
+   (if (boundp 'flymake-python-pyflakes-flake8-ignores) (concat "--ignore=" flymake-python-pyflakes-flake8-ignores) "")
+   filename))
 
 ;;;###autoload
 (defun flymake-python-pyflakes-load ()
