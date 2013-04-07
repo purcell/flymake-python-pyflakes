@@ -10,11 +10,19 @@
 ;;; Commentary:
 
 ;; Usage:
+
 ;;   (require 'flymake-python-pyflakes)
 ;;   (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 ;;
 ;; To use "flake8" instead of "pyflakes", add this line:
+
 ;;   (setq flymake-python-pyflakes-executable "flake8")
+;;
+;; You can pass extra arguments to the checker program by customizing
+;; the variable `flymake-python-pyflakes-extra-arguments', or setting it
+;; directly, e.g.
+
+;;   (setq flymake-python-pyflakes-extra-arguments '("--ignore=W806"))
 ;;
 ;; Uses flymake-easy, from https://github.com/purcell/flymake-easy
 
@@ -22,17 +30,32 @@
 
 (require 'flymake-easy)
 
+;; TODO: handle any file name
 (defconst flymake-python-pyflakes-err-line-patterns
   '(("^\\(.*?\\.pyw?\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3)
     ;; flake8
     ("^\\(.*?\\.pyw?\\):\\([0-9]+\\):\\([0-9]+\\): \\(.*\\)$" 1 2 3 4)))
 
-(defvar flymake-python-pyflakes-executable "pyflakes"
-  "Pyflakes executable to use for syntax checking.")
+(defgroup flymake-python-pyflakes nil
+  "Flymake support for Python via pyflakes or flake8"
+  :group 'flymake
+  :prefix "flymake-python-pyflakes-")
+
+(defcustom flymake-python-pyflakes-executable "pyflakes"
+  "Pyflakes executable to use for syntax checking."
+  :type 'string
+  :group 'flymake-python-pyflakes)
+
+(defcustom flymake-python-pyflakes-extra-arguments nil
+  "Pyflakes executable to use for syntax checking."
+  :type '(repeat string)
+  :group 'flymake-python-pyflakes)
 
 (defun flymake-python-pyflakes-command (filename)
   "Construct a command that flymake can use to syntax-check FILENAME."
-  (list flymake-python-pyflakes-executable filename))
+  (append (list flymake-python-pyflakes-executable)
+          flymake-python-pyflakes-extra-arguments
+          (list filename)))
 
 ;;;###autoload
 (defun flymake-python-pyflakes-load ()
