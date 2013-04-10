@@ -58,7 +58,8 @@
           (list filename)))
 
 (defun flymake-python-pyflakes-warn-regex (executable)
-  (if (equal executable "pyflakes")
+  "Return a regex which identifies warnings output by EXECUTABLE."
+  (if (string-match-p "pyflakes" executable)
       "\\(^redefinition\\|.*unused.*\\|used$\\)"
     "^\\([WFCN]\\|E[0-7]\\)"))
 
