@@ -57,6 +57,11 @@
           flymake-python-pyflakes-extra-arguments
           (list filename)))
 
+(defun flymake-python-pyflakes-warn-regex (executable)
+  (if (equal executable "pyflakes")
+      "\\(^redefinition\\|.*unused.*\\|used$\\)"
+    "^\\([WFCN]\\|E[0-7]\\)"))
+
 ;;;###autoload
 (defun flymake-python-pyflakes-load ()
   "Configure flymake mode to check the current buffer's python syntax using pyflakes."
@@ -65,8 +70,8 @@
                      flymake-python-pyflakes-err-line-patterns
                      'inplace
                      "py"
-                     "^\\([WFCN]\\|E[0-7]\\)"))
-
+                     (flymake-python-pyflakes-warn-regex
+                      flymake-python-pyflakes-executable)))
 
 (provide 'flymake-python-pyflakes)
 ;;; flymake-python-pyflakes.el ends here
