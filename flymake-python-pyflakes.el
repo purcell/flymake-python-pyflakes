@@ -63,6 +63,9 @@
       "\\(^redefinition\\|.*unused.*\\|used$\\)"
     "^\\([WFCN]\\|E[0-7]\\)"))
 
+(defconst flymake-python-pyflakes-info-regex
+  "^\\(F401\\|E303\\|E[2-3]\\|E501\\)")
+
 ;;;###autoload
 (defun flymake-python-pyflakes-load ()
   "Configure flymake mode to check the current buffer's python syntax using pyflakes."
@@ -72,7 +75,8 @@
                      'inplace
                      "py"
                      (flymake-python-pyflakes-warn-regex
-                      flymake-python-pyflakes-executable)))
+                      flymake-python-pyflakes-executable)
+                     flymake-python-pyflakes-info-regex))
 
 (provide 'flymake-python-pyflakes)
 ;;; flymake-python-pyflakes.el ends here
