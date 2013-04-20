@@ -51,6 +51,20 @@
   :type '(repeat string)
   :group 'flymake-python-pyflakes)
 
+(defcustom flymake-python-pyflakes-extra-arguments nil
+  "Pyflakes executable to use for syntax checking."
+  :type '(repeat string)
+  :group 'flymake-python-pyflakes)
+
+(defcustom flymake-python-pyflakes-info-regex nil
+  "Regexp used to match messages to be display as informational.
+The flymake fork at https://github.com/illusori/emacs-flymake allows
+the display of 'info' lines which are neither warnings or errors.
+When that version of flymake is in use, this pattern determines
+which messages will be displayed in that way."
+  :type 'string
+  :group 'flymake-python-pyflakes)
+
 (defun flymake-python-pyflakes-command (filename)
   "Construct a command that flymake can use to syntax-check FILENAME."
   (append (list flymake-python-pyflakes-executable)
@@ -63,8 +77,6 @@
       "\\(^redefinition\\|.*unused.*\\|used$\\)"
     "^\\([WFCN]\\|E[0-7]\\)"))
 
-(defconst flymake-python-pyflakes-info-regex
-  "^\\(F401\\|E303\\|E[2-3]\\|E501\\)")
 
 ;;;###autoload
 (defun flymake-python-pyflakes-load ()
