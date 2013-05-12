@@ -65,6 +65,17 @@ which messages will be displayed in that way."
   :type 'string
   :group 'flymake-python-pyflakes)
 
+(defcustom flymake-python-pyflakes-temp-file-location 'inplace
+  "Where to store the temporary file used to run the flymake.
+`inplace' creates a script_flymake.py file in the same directory
+as script.py. `tempdir' creates a temporary file according to
+`make-temp-file'.  The default is `inplace'. See
+`flymake-easy--tempfile-in-temp-dir' for more info."
+  :type '(radio
+         (const inplace)
+         (const tempdir))
+  :group 'flymake-python-pyflakes)
+
 (defun flymake-python-pyflakes-command (filename)
   "Construct a command that flymake can use to syntax-check FILENAME."
   (append (list flymake-python-pyflakes-executable)
@@ -84,7 +95,7 @@ which messages will be displayed in that way."
   (interactive)
   (flymake-easy-load 'flymake-python-pyflakes-command
                      flymake-python-pyflakes-err-line-patterns
-                     'inplace
+                     flymake-python-pyflakes-temp-file-location
                      "py"
                      (flymake-python-pyflakes-warn-regex
                       flymake-python-pyflakes-executable)
