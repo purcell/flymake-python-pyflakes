@@ -5,7 +5,7 @@
 ;; Author: Steve Purcell <steve@sanityinc.com>
 ;; URL: https://github.com/purcell/flymake-python-pyflakes
 ;; Version: DEV
-;; Package-Requires: ((flymake-easy "0.6"))
+;; Package-Requires: ((flymake-easy "0.8"))
 
 ;;; Commentary:
 
@@ -84,7 +84,7 @@ which messages will be displayed in that way."
   (interactive)
   (flymake-easy-load 'flymake-python-pyflakes-command
                      flymake-python-pyflakes-err-line-patterns
-                     'inplace
+                     'tempdir
                      "py"
                      (flymake-python-pyflakes-warn-regex
                       flymake-python-pyflakes-executable)
