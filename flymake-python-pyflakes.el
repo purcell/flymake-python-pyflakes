@@ -51,11 +51,6 @@
   :type '(repeat string)
   :group 'flymake-python-pyflakes)
 
-(defcustom flymake-python-pyflakes-extra-arguments nil
-  "Pyflakes executable to use for syntax checking."
-  :type '(repeat string)
-  :group 'flymake-python-pyflakes)
-
 (defcustom flymake-python-pyflakes-info-regex nil
   "Regexp used to match messages to be display as informational.
 The flymake fork at https://github.com/illusori/emacs-flymake allows
