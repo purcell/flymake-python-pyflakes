@@ -32,9 +32,9 @@
 
 ;; TODO: handle any file name
 (defconst flymake-python-pyflakes-err-line-patterns
-  '(("^\\(.*?\\.pyw?\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3)
+  '(("^\\(.*?\\.pyw?\\):\\([0-9]+\\): \\(.*\\)\r?\n" 1 2 nil 3)
     ;; flake8
-    ("^\\(.*?\\.pyw?\\):\\([0-9]+\\):\\([0-9]+\\): \\(.*\\)$" 1 2 3 4)))
+    ("^\\(.*?\\.pyw?\\):\\([0-9]+\\):\\([0-9]+\\): \\(.*\\)\r?\n" 1 2 3 4)))
 
 (defgroup flymake-python-pyflakes nil
   "Flymake support for Python via pyflakes or flake8"
