@@ -4,6 +4,8 @@ flymake-python-pyflakes.el
 An Emacs flymake handler for syntax-checking Python source code using
 `pyflakes` or `flake8`.
 
+These days you might be better served by [flycheck](https://github.com/flycheck/flycheck).
+
 Installation
 =============
 
