@@ -34,7 +34,7 @@ directly, e.g.
     (setq flymake-python-pyflakes-extra-arguments '("--ignore=W806"))
 
 [marmalade]: http://marmalade-repo.org
-[melpa]: http://melpa.milkbox.net
+[melpa]: http://melpa.org
 
 <hr>
 
